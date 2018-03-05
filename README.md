@@ -4,7 +4,7 @@
 - *Nicolas Khan (KHAN27089508),*
 - *Nicolas Leroy (LERN13029600),*
 - *Francis Manzanilla (MANF24049403),*
-- *Corentin Fréry ().*
+- *Corentin Fréry (FREC30059401).*
 
 Projet développé dans le cadre du cours 8INF853 Architecture des applications d'entreprise à l'UQAC.
 
