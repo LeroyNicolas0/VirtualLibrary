@@ -9,6 +9,10 @@ import Beans.Livre;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import org.apache.commons.validator.routines.UrlValidator;
 
 /**
  *
@@ -53,12 +57,62 @@ public class AjoutLivreForm {
         Livre livre = new Livre();
     
         try {
-            validationNom( titre );
+            validationTitre( titre );
         } catch ( Exception e ) {
             setErreur( TITRE, e.getMessage() );
         }
         livre.setTitre( titre );
+        
+        Date date = new Date();
+        try {
+            date=validationDateParution( dateparution );
+        } catch ( Exception e ) {
+            setErreur( DATEPARUTION, e.getMessage() );
+        }
+        livre.setDateParution(date );
+        
+        livre.setDescription(description );
+        
+        Boolean visibl=validationVisible(visible);
+        livre.setVisibleLecteur(visibl);
+        
+        try {
+            validationLien( lien );
+        } catch ( Exception e ) {
+            setErreur( LIEN, e.getMessage() );
+        }
+        livre.setLienCouverture(lien );
        
+        try {
+            validationIsbn( isbn );
+        } catch ( Exception e ) {
+            setErreur( ISBN, e.getMessage() );
+        }
+        livre.setIsbn(isbn );
+        
+        Integer nbPagesInt=0;
+        try {
+            nbPagesInt=validationNbPages( nbpages );
+        } catch ( Exception e ) {
+            setErreur( NBPAGES, e.getMessage() );
+        }
+        livre.setNbPages(nbPagesInt);
+        
+        try {
+            validationLangue( langue );
+        } catch ( Exception e ) {
+            setErreur( LANGUE, e.getMessage() );
+        }
+        livre.setLangue(langue );
+        
+        try {
+            validationTypeLivre( typelivre );
+        } catch ( Exception e ) {
+            setErreur( TYPELIVRE, e.getMessage() );
+        }
+        livre.setTypeLivre(typelivre );
+        
+        //TODO s'occuper des auters/mot clés
 
         if ( erreurs.isEmpty() ) {
             resultat = "Succès de l'inscription.";
@@ -69,13 +123,67 @@ public class AjoutLivreForm {
         return livre;
     }
     
-    
-    private void validationNom( String nom ) throws Exception {
-        if ( nom != null && nom.length() < 3 ) {
-            throw new Exception( "Le nom doit contenir au moins 3 caractères." );
+    private void validationTitre( String titre ) throws Exception {
+        if ( titre==null || (titre != null && titre.length() < 1 )) {
+            throw new Exception( "Le titre doit contenir au moins 1 caractère." );
         }
     }
-        
+     
+    private Date validationDateParution( String stringDate ) throws Exception {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date =formatter.parse(stringDate);
+        if ( date==null || (date != null && date.before(new Date()) )) {
+            throw new Exception( "La date de parution ne peut être dans le futur." );
+        }
+        return date;
+    }
+    
+    private boolean validationVisible( String visible ) {
+        if(visible.equals("yes")) return true;
+        else return false;
+    }
+    
+    private void validationLien( String lien ) throws Exception {
+        String[] schemes = {"http","https"};
+        UrlValidator urlValidator = new UrlValidator(schemes);
+        if ( lien!=null && !urlValidator.isValid(lien) ) {
+            throw new Exception( "Le lien n'est pas valide." );
+        }
+    }
+    
+    private void validationIsbn( String isbn ) throws Exception {
+        if ( isbn==null || (isbn != null && isbn.length() != 13) ) {
+            throw new Exception( "L'isbn doit faire 13 caractères." );
+        }
+    }
+    
+    
+    private Integer validationNbPages( String nbPages ) throws Exception {      
+        if ( nbPages==null || (nbPages != null && nbPages.length() < 1) ) {
+            throw new Exception( "Veuillez entrer un nombre de pages." );
+        }
+        Integer nbPagesInt=Integer.parseInt(nbPages);
+        if(nbPagesInt<1) {
+            throw new Exception( "Le nombre de pages est erroné." );
+        }
+        return nbPagesInt;
+    }
+    
+    private void validationLangue( String langue ) throws Exception {
+        if ( langue==null || (langue != null && langue.length() < 3 )) {
+            throw new Exception( "La langue doit contenir au moins 3 caractère." );
+        }
+    }
+    
+    private void validationTypeLivre( String typelivre ) throws Exception {
+        ArrayList<String> typeList = new ArrayList<String>();
+        typeList.add("roman");
+        typeList.add("manga");
+        typeList.add("documentaire");
+        if ( typelivre==null || (typelivre != null && typelivre.length() < 1 ) || !typeList.contains(typelivre)) {
+            throw new Exception( "Le type doit exister et contenir au moins 1 caractère." );
+        }
+    }
     
     /*
      * Ajoute un message correspondant au champ spécifié à la map des erreurs.
