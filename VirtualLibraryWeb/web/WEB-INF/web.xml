@@ -20,6 +20,10 @@
         <servlet-name>Deconnexion</servlet-name>
         <servlet-class>Servlets.Deconnexion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AjoutParticipant</servlet-name>
+        <servlet-class>Servlets.AjoutParticipant</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inscription</servlet-name>
         <url-pattern>/Inscription</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>Deconnexion</servlet-name>
         <url-pattern>/Deconnexion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjoutParticipant</servlet-name>
+        <url-pattern>/Bibliotecaire/AjoutParticipant</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

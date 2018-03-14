@@ -19,6 +19,7 @@
          <%-- Vérification de la présence d'un objet utilisateur en session --%>
                 <c:if test="${!empty sessionScope.sessionUtilisateur}">
                     <p><a href="<c:url value="/Deconnexion"/>">Deconnexion</a></p>
+                     <p><a href="<c:url value="/Bibliotecaire/AjoutParticipant"/>">Ajout participant</a></p>
                 </c:if>
     </body>
 </html>

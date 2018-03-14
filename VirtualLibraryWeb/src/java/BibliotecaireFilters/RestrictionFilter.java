@@ -110,7 +110,12 @@ public class RestrictionFilter implements Filter {
         HttpSession session = requests.getSession();
 
         doBeforeProcessing(request, response);
-        
+        /* Non-filtrage des ressources statiques */
+        String chemin = requests.getRequestURI().substring( requests.getContextPath().length() );
+        if ( chemin.startsWith( "/inc" ) ) {
+            chain.doFilter( request, response );
+            return;
+        }
         Throwable problem = null;
         try {
                  /**
