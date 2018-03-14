@@ -24,6 +24,10 @@
         <servlet-name>AjoutParticipant</servlet-name>
         <servlet-class>Servlets.AjoutParticipant</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AjoutLivre</servlet-name>
+        <servlet-class>Servlets.AjoutLivre</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inscription</servlet-name>
         <url-pattern>/Inscription</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>AjoutParticipant</servlet-name>
         <url-pattern>/Bibliotecaire/AjoutParticipant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjoutLivre</servlet-name>
+        <url-pattern>/Bibliotecaire/AjoutLivre</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
