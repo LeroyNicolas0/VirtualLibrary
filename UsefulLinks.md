@@ -11,3 +11,9 @@ https://tomcat.apache.org/download-70.cgi
 
 - Java EE, pas JEE
 https://javaee.github.io/javaee-spec/JEE
+
+- Librairie Apache Commons Validator
+http://commons.apache.org/proper/commons-validator/
+
+-Ajout de libraire sous netbeans
+https://stackoverflow.com/questions/5893349/java-how-to-add-library-files-in-netbeans
