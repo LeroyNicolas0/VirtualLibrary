@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 14, 2018 at 12:37 AM
+-- Generation Time: Mar 14, 2018 at 04:42 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `virtual library`
 --
+CREATE DATABASE IF NOT EXISTS `virtual library` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `virtual library`;
 
 -- --------------------------------------------------------
 
@@ -87,9 +89,18 @@ CREATE TABLE IF NOT EXISTS `document` (
   `numero_magazine` int(11) DEFAULT NULL,
   `visible_lecteur` tinyint(1) NOT NULL,
   `type_document_id_fk` int(11) NOT NULL,
+  `lien_couverture` text,
+  `nombre_exemplaire` int(11) NOT NULL,
   PRIMARY KEY (`document_id`),
   KEY `fk_document_type_doc_type_doc` (`type_document_id_fk`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `document`
+--
+
+INSERT INTO `document` (`document_id`, `titre`, `date_parution`, `description`, `nombre_pages`, `isbn`, `langue`, `editeur`, `validation`, `maison_disque`, `nombre_piste`, `societe_production`, `maison_edition`, `duree`, `public_vise`, `type_periodique`, `issn`, `numero_magazine`, `visible_lecteur`, `type_document_id_fk`, `lien_couverture`, `nombre_exemplaire`) VALUES
+(1, 'Coeur d\'acier', '2013-01-01', 'On les appelle les Épiques. Il y a dix ans, ils ont été frappés par un éclair. Depuis ils possèdent d’incroyables pouvoirs. Mais leurs intentions ne sont pas bonnes…\r\n', 350, '9782360511037', 'francais', 'livre de poche', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 'https://images-na.ssl-images-amazon.com/images/I/51ik2quOw8L._SX210_.jpg', 4);
 
 -- --------------------------------------------------------
 
@@ -158,6 +169,14 @@ CREATE TABLE IF NOT EXISTS `lien_document_mot_cle` (
   KEY `fk_doc_keyword_mot_cle` (`mot_cle_id_fk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `lien_document_mot_cle`
+--
+
+INSERT INTO `lien_document_mot_cle` (`document_id_fk`, `mot_cle_id_fk`) VALUES
+(1, 1),
+(1, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -171,6 +190,13 @@ CREATE TABLE IF NOT EXISTS `lien_document_participant` (
   PRIMARY KEY (`participant_id_fk`,`document_id_fk`),
   KEY `fk_doc_part_doc` (`document_id_fk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `lien_document_participant`
+--
+
+INSERT INTO `lien_document_participant` (`participant_id_fk`, `document_id_fk`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -186,6 +212,13 @@ CREATE TABLE IF NOT EXISTS `lien_document_pays` (
   KEY `fk_doc_pays_document` (`document_id_fk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `lien_document_pays`
+--
+
+INSERT INTO `lien_document_pays` (`pays_id_fk`, `document_id_fk`) VALUES
+(4, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -197,7 +230,15 @@ CREATE TABLE IF NOT EXISTS `mot_cle` (
   `mot_cle_id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(20) NOT NULL,
   PRIMARY KEY (`mot_cle_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `mot_cle`
+--
+
+INSERT INTO `mot_cle` (`mot_cle_id`, `nom`) VALUES
+(1, 'science-fiction'),
+(2, 'fantastique');
 
 -- --------------------------------------------------------
 
@@ -215,7 +256,14 @@ CREATE TABLE IF NOT EXISTS `participant` (
   `type_particpant_id_fk` int(11) NOT NULL,
   PRIMARY KEY (`participant_id`),
   KEY `fk_particpant_type_part_type_part` (`type_particpant_id_fk`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `participant`
+--
+
+INSERT INTO `participant` (`participant_id`, `pseudonyme`, `prenom`, `nom`, `date_naissance`, `type_particpant_id_fk`) VALUES
+(1, NULL, 'Brandon', 'Sanderson', '1975-12-19', 1);
 
 -- --------------------------------------------------------
 
@@ -228,7 +276,17 @@ CREATE TABLE IF NOT EXISTS `pays_interdit` (
   `pays_id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(30) NOT NULL,
   PRIMARY KEY (`pays_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pays_interdit`
+--
+
+INSERT INTO `pays_interdit` (`pays_id`, `nom`) VALUES
+(1, 'allemagne'),
+(2, 'france'),
+(3, 'canada'),
+(4, 'chine');
 
 -- --------------------------------------------------------
 
@@ -258,7 +316,14 @@ CREATE TABLE IF NOT EXISTS `type_document` (
   `type_document_id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(30) NOT NULL,
   PRIMARY KEY (`type_document_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `type_document`
+--
+
+INSERT INTO `type_document` (`type_document_id`, `nom`) VALUES
+(1, 'roman');
 
 -- --------------------------------------------------------
 
@@ -271,7 +336,14 @@ CREATE TABLE IF NOT EXISTS `type_participant` (
   `type_participant_id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(30) NOT NULL,
   PRIMARY KEY (`type_participant_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `type_participant`
+--
+
+INSERT INTO `type_participant` (`type_participant_id`, `nom`) VALUES
+(1, 'auteur');
 
 --
 -- Constraints for dumped tables
