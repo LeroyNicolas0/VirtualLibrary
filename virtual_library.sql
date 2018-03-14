@@ -19,10 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `virtual library`
+-- Database: `virtual_library`
 --
-CREATE DATABASE IF NOT EXISTS `virtual library` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `virtual library`;
+CREATE DATABASE IF NOT EXISTS `virtual_library` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `virtual_library`;
 
 -- --------------------------------------------------------
 
