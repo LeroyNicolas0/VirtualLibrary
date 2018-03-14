@@ -15,5 +15,10 @@
     <body>
         <h1>Hello World!</h1>
         <p><a href="<c:url value="/Inscription"/>">Créer un nouveau client</a></p>
+        <p><a href="<c:url value="/Connexion"/>">Connexion client</a></p>
+         <%-- Vérification de la présence d'un objet utilisateur en session --%>
+                <c:if test="${!empty sessionScope.sessionUtilisateur}">
+                    <p><a href="<c:url value="/Deconnexion"/>">Deconnexion</a></p>
+                </c:if>
     </body>
 </html>

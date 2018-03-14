@@ -15,9 +15,12 @@
     </head>
     <body>
         <div id="corps">
-            <p class="info">${ form.resultat }</p>
-            <p>Nom : <c:out value="${ utilisateur.nom }"/></p>
-            <p>Email : <c:out value="${ utilisateur.email }"/></p>
+            <%-- Vérification de la présence d'un objet utilisateur en session --%>
+                <c:if test="${!empty sessionScope.sessionUtilisateur}">
+                    <%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
+                    <p class="succes">Vous êtes connecté(e) avec l'adresse : ${sessionScope.sessionUtilisateur.email}</p>
+                    <p><a href="<c:url value="/Deconnexion"/>">Deconnexion</a></p>
+                </c:if>
         </div>
     </body>
 </html>
