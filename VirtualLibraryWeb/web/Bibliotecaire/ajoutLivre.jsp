@@ -24,7 +24,7 @@
                 <p>Vous pouvez ajouter un Livre via ce formulaire.</p>
 
                 <label for="nom">Titre </label>
-                <input type="text" id="titre" name="titre" value="<c:out value="${livre.titre}"/>" size="20" maxlength="20" />
+                <input type="text" id="titre" name="titre" value="<c:out value="${livre.titre}"/>"  />
                 <span class="erreur">${form.erreurs['nom']}</span>
                 <br />
                 
@@ -45,7 +45,7 @@
                 <br />
                 
                 <label for="nom">Lien pour l'image de couverture </label>
-                <input type="text" id="lien" name="lien" value="<c:out value="${livre.lien}"/>" size="20" maxlength="20" />
+                <input type="text" id="lien" name="lien" value="<c:out value="${livre.lien}"/>"  />
                 <span class="erreur">${form.erreurs['lien']}</span>
                 <br />
                 
