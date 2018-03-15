@@ -130,7 +130,7 @@ public class AjoutLivreForm {
     }
      
     private Date validationDateParution( String stringDate ) throws Exception {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
         Date date =formatter.parse(stringDate);
         if ( date==null || (date != null && date.before(new Date()) )) {
             throw new Exception( "La date de parution ne peut être dans le futur." );
