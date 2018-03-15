@@ -12,12 +12,13 @@
         <meta charset="utf-8" />
         <title>Inscription</title>
         <link type="text/css" rel="stylesheet" href="<c:url value="/inc/style.css"/>" />
-        <link rel="stylesheet" href="<c:url value="/inc/slimselect.min.css" />"/>
+        <link type="text/css" rel="stylesheet" href="<c:url value="/inc/slimselect.min.css" />"/>
+        <script src="<c:url value="/slimselect.min.js" />"> </script>
     </head>
     <body>
         <c:import url="/inc/header.jsp" />
         
-        <form method="post" action="AjoutParticipant">
+        <form method="post" action="AjoutLivre">
             <fieldset>
                 <legend>Ajouter un Livre</legend>
                 <p>Vous pouvez ajouter un Livre via ce formulaire.</p>
@@ -137,14 +138,13 @@
                 <br />
                 
                 <label for="nom">Type Livre</label>
-                <input list="typelivre" name="typelivre">
-                    <datalist id="typelivre">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
+                <select data-placeholder="Choose a book type..." id="typelivre" name="typelivre">
+                    <option value="Internet Explorer">Internet Explorer</option>
+                    <option value="Firefox">Firefox</option>
+                    <option value="Chrome">Chrome</option>
+                    <option value="Opera">Opera</option>
+                    <option value="Safari">Safari</option>
+                </select>
                 <span class="erreur">${form.erreurs['typelivre']}</span>
                 <br />
 
@@ -156,11 +156,13 @@
             </fieldset>
         </form>
             
-            <script src="<c:url value="/slimselect.min.js" />">  
-                import SlimSelect from 'slim-select-min'
-                var select = new SlimSelect({
+            <script>
+                new SlimSelect({
                     select: '#langue'
-                    });
+                });
+                new SlimSelect({
+                    select: '#typelivre'
+                });
         </script>
 
         <c:import url="/inc/footer.jsp" />            
