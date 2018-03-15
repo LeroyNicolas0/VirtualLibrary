@@ -9,7 +9,7 @@ package Beans;
  *
  * @author nicolas
  */
-public class Utilisateur {
+public abstract class Utilisateur {
 
     private String email;
     private String motDePasse;

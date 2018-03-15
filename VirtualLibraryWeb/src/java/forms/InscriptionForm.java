@@ -5,6 +5,7 @@
  */
 package forms;
 
+import Beans.Lecteur;
 import Beans.Utilisateur;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +39,7 @@ public final class InscriptionForm {
         String confirmation = getValeurChamp( request, CONF );
         String nom = getValeurChamp( request, LOGIN );
 
-        Utilisateur utilisateur = new Utilisateur();
+        Utilisateur utilisateur = new Lecteur();
 
         try {
             validationEmail( email );

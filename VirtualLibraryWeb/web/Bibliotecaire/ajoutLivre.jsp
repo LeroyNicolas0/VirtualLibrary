@@ -23,43 +23,43 @@
                 <legend>Ajouter un Livre</legend>
                 <p>Vous pouvez ajouter un Livre via ce formulaire.</p>
 
-                <label for="nom">Titre </label>
+                <label for="titre">Titre </label>
                 <input type="text" id="titre" name="titre" value="<c:out value="${livre.titre}"/>"  />
                 <span class="erreur">${form.erreurs['nom']}</span>
                 <br />
                 
-                <label for="nom">Date de parution</label>
-                <input type="date" name="dateparution" value="<c:out value="${livre.dateparution}"/>" >
+                <label for="dateparution">Date de parution</label>
+                <input type="date" name="dateparution" value="<c:out value="${livre.dateParution}"/>" >
                 <span class="erreur">${form.erreurs['dateparution']}</span>
                 <br />
                 
-                <label for="nom">Description </label>
+                <label for="description">Description </label>
                 <input type="text" id="description" name="description" value="<c:out value="${livre.description}"/>" size="20" maxlength="20" />
                 <span class="erreur">${form.erreurs['description']}</span>
                 <br />
                 
-                <label for="nom">Visible </label>
+                <label for="visible">Visible </label>
                 <input type="radio" id="visible" name="visible" value="yes" checked /> yes   
                 <input type="radio" id="visible" name="visible" value="no"  /> no <br />
                 <span class="erreur">${form.erreurs['visible']}</span>
                 <br />
                 
-                <label for="nom">Lien pour l'image de couverture </label>
-                <input type="text" id="lien" name="lien" value="<c:out value="${livre.lien}"/>"  />
+                <label for="lien">Lien pour l'image de couverture </label>
+                <input type="text" id="lien" name="lien" value="<c:out value="${livre.lienCouverture}"/>"  />
                 <span class="erreur">${form.erreurs['lien']}</span>
                 <br />
                 
-                <label for="nom">ISBN </label>
+                <label for="isbn">ISBN </label>
                 <input type="text" id="isbn" name="isbn" value="<c:out value="${livre.isbn}"/>" size="20" maxlength="20" />
                 <span class="erreur">${form.erreurs['isbn']}</span>
                 <br />
                 
-                <label for="nom">Nombre de page </label>
-                <input type="number" id="nbpages" name="nbpages" value="<c:out value="${livre.nbpages}"/>" min="0"/>
+                <label for="nbpages">Nombre de page </label>
+                <input type="number" id="nbpages" name="nbpages" value="<c:out value="${livre.nbPages}"/>" min="0"/>
                 <span class="erreur">${form.erreurs['nbpages']}</span>
                 <br />
              
-                <label for="nom">Choisir la langue  </label>
+                <label for="langue">Choisir la langue  </label>
             <select data-placeholder="Choose a Language..." id="langue" name="langue">
                 <option value="Afrikanns">Afrikanns</option>
                 <option value="Albanian">Albanian</option>
@@ -137,7 +137,7 @@
                  <span class="erreur">${form.erreurs['langue']}</span>
                 <br />
                 
-                <label for="nom">Type Livre</label>
+                <label for="typelivre">Type Livre</label>
                 <select data-placeholder="Choose a book type..." id="typelivre" name="typelivre">
                     <option value="Internet Explorer">Internet Explorer</option>
                     <option value="Firefox">Firefox</option>
