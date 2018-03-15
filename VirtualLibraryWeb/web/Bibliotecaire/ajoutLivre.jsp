@@ -12,9 +12,11 @@
         <meta charset="utf-8" />
         <title>Inscription</title>
         <link type="text/css" rel="stylesheet" href="<c:url value="/inc/style.css"/>" />
-                    <link rel="stylesheet" href="<c:url value="/inc/slimselect.min.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/inc/slimselect.min.css" />"/>
     </head>
     <body>
+        <c:import url="/inc/header.jsp" />
+        
         <form method="post" action="AjoutParticipant">
             <fieldset>
                 <legend>Ajouter un Livre</legend>
@@ -161,6 +163,6 @@
                     });
         </script>
 
-            
+        <c:import url="/inc/footer.jsp" />            
     </body>
 </html>

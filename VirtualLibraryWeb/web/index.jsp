@@ -10,9 +10,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link type="text/css" rel="stylesheet" href="inc/style.css" />
         <title>JSP Page</title>
     </head>
     <body>
+        <c:import url="/inc/header.jsp" />
+        
         <h1>Hello World!</h1>
         <p><a href="<c:url value="/Inscription"/>">Créer un nouveau client</a></p>
         <p><a href="<c:url value="/Connexion"/>">Connexion client</a></p>
@@ -22,5 +25,7 @@
                     <p><a href="<c:url value="/Bibliotecaire/AjoutParticipant"/>">Ajout participant</a></p>
                     <p><a href="<c:url value="/Bibliotecaire/AjoutLivre"/>">Ajout livre</a></p>
                 </c:if>
+                    
+        <c:import url="/inc/footer.jsp" />            
     </body>
 </html>

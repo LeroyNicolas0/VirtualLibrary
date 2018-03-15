@@ -14,6 +14,8 @@
         <link type="text/css" rel="stylesheet" href="inc/style.css" />
     </head>
     <body>
+        <c:import url="/inc/header.jsp" />
+        
         <form method="post" action="Inscription">
             <fieldset>
                 <legend>Inscription</legend>
@@ -45,5 +47,7 @@
                 <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
             </fieldset>
         </form>
+                                
+        <c:import url="/inc/footer.jsp" />  
     </body>
 </html>
