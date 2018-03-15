@@ -29,6 +29,6 @@
 <div class="feature">
         <div class="feature-inner">
         <h1>"Qui veut se connaître, qu'il ouvre un livre."</h1>
-        <h2> Jean Paulhan </h2>
+        <h2> - Jean Paulhan </h2>
         </div>
 </div>
