@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Beans.Lecteur;
 import Beans.Utilisateur;
 import forms.ConnexionForm;
 import java.io.IOException;

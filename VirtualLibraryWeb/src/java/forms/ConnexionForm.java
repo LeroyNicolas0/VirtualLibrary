@@ -5,6 +5,8 @@
  */
 package forms;
 
+import Beans.Bibliothecaire;
+import Beans.Lecteur;
 import Beans.Utilisateur;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +36,7 @@ public final class ConnexionForm {
         String email = getValeurChamp( request, CHAMP_EMAIL );
         String motDePasse = getValeurChamp( request, CHAMP_PASS );
 
-        Utilisateur utilisateur = new Utilisateur();
+        Utilisateur utilisateur;
 
         /* Validation du champ email. */
         try {
@@ -42,7 +44,7 @@ public final class ConnexionForm {
         } catch ( Exception e ) {
             setErreur( CHAMP_EMAIL, e.getMessage() );
         }
-        utilisateur.setEmail( email );
+        
 
         /* Validation du champ mot de passe. */
         try {
@@ -50,7 +52,7 @@ public final class ConnexionForm {
         } catch ( Exception e ) {
             setErreur( CHAMP_PASS, e.getMessage() );
         }
-        utilisateur.setMotDePasse( motDePasse );
+        
 
         /* Initialisation du résultat global de la validation. */
         if ( erreurs.isEmpty() ) {
@@ -58,6 +60,16 @@ public final class ConnexionForm {
         } else {
             resultat = "Échec de la connexion.";
         }
+        
+        //TODO check dans la bd
+        if(false) {
+            utilisateur = new Lecteur();
+        }
+        else {
+            utilisateur = new Bibliothecaire();
+        }
+        utilisateur.setEmail( email );
+        utilisateur.setMotDePasse( motDePasse );
 
         return utilisateur;
     }

@@ -5,6 +5,7 @@
  */
 package BibliotecaireFilters;
 
+import Beans.Bibliothecaire;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -121,13 +122,13 @@ public class RestrictionFilter implements Filter {
                  /**
                  * Si l'objet utilisateur n'existe pas dans la session en cours, alors
                  * l'utilisateur n'est pas connecté.
-                 */
-                if ( session.getAttribute( ATT_SESSION_USER ) == null ) {
-                    /* Redirection vers la page publique */
-                    res.sendRedirect( requests.getContextPath()  );
-                } else {
+                 */ 
+                    if (session.getAttribute( ATT_SESSION_USER ) instanceof Bibliothecaire ){
                     /* Affichage de la page restreinte */
                     chain.doFilter( request, response );
+                } else {
+                    /* Redirection vers la page publique */
+                    res.sendRedirect( requests.getContextPath()  );
                 }
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,
