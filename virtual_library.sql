@@ -21,8 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `virtual_library`
 --
-CREATE DATABASE IF NOT EXISTS `virtual_library` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `virtual_library`;
+CREATE DATABASE IF NOT EXISTS `negorigin_virtuallibrary` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `negorigin_virtuallibrary`;
 
 -- --------------------------------------------------------
 
