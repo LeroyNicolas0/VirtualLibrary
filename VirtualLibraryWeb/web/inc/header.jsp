@@ -9,7 +9,7 @@
 <header id="header">
         <div id="header-inner">	
                 <div id="logo">
-                        <h1><a href="#">HelloWorld<span>Library</span></a></h1>
+                    <h1><a href="<c:url value="/"/>">HelloWorld<span>Library</span></a></h1>
                 </div>
                 <div id="top-nav">
                         <ul>

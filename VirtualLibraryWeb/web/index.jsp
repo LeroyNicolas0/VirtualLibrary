@@ -17,27 +17,31 @@
     <body>
         <c:import url="/inc/header.jsp" />
         
-        <h1>Hello World!</h1>
-        <p><a href="<c:url value="/Inscription"/>">Créer un nouveau client</a></p>
-        <p><a href="<c:url value="/Connexion"/>">Connexion client</a></p>
-         <%-- Vérification de la présence d'un objet utilisateur en session --%>
-                <c:if test="${!empty sessionScope.sessionUtilisateur}">
-                    <p><a href="<c:url value="/Deconnexion"/>">Deconnexion</a></p>
-                    <p><a href="<c:url value="/Bibliotecaire/AjoutParticipant"/>">Ajout participant</a></p>
-                    <p><a href="<c:url value="/Bibliotecaire/AjoutLivre"/>">Ajout livre</a></p>
-                </c:if>
         <div class="wrap">
-   <div class="search">
-      <input type="text" class="searchTerm" placeholder="What are you looking for?">
-      <select  id="choixsearch" name="choixsearch">
-                <option value="Titre">Titre</option>
-                <option value="Auteur">Auteur</option>
-      </select>        
-      <button type="submit" class="searchButton">
-        <i class="fa fa-search"></i>
-     </button>
-   </div>
-</div>
+            <div class="search">
+              <form method="post" action="AjoutLivre">
+                <fieldset>
+                <input type="text" class="searchTerm" placeholder="What are you looking for?">
+                <select  id="choixsearch" name="choixsearch">
+                    <option value="Titre">Titre</option>
+                    <option value="Auteur">Auteur</option>
+                </select>        
+                <button type="submit" class="searchButton">
+                     <i class="fa fa-search"></i>
+                </button>
+               </fieldset>
+             </form>
+            </div>
+        </div>
+        
+        <div class="under-search">
+          <%-- Vérification de la présence d'un objet utilisateur en session --%>
+            <c:if test="${!empty sessionScope.sessionUtilisateur}">
+                <p><a href="<c:url value="/Bibliotecaire/AjoutParticipant"/>">Ajout participant</a></p>
+                <p><a href="<c:url value="/Bibliotecaire/AjoutLivre"/>">Ajout livre</a></p>
+            </c:if>
+        </div>   
+            
         <c:import url="/inc/footer.jsp" />            
     </body>
 </html>
