@@ -130,9 +130,9 @@ public class AjoutLivreForm {
     }
      
     private Date validationDateParution( String stringDate ) throws Exception {
-        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date =formatter.parse(stringDate);
-        if ( date==null || (date != null && date.before(new Date()) )) {
+        if ( date==null ||  date.after(new Date() )) {
             throw new Exception( "La date de parution ne peut être dans le futur." );
         }
         return date;
@@ -177,7 +177,7 @@ public class AjoutLivreForm {
     
     private void validationTypeLivre( String typelivre ) throws Exception {
         ArrayList<String> typeList = new ArrayList<String>();
-        typeList.add("roman");
+        typeList.add("Internet Explorer");
         typeList.add("manga");
         typeList.add("documentaire");
         if ( typelivre==null || (typelivre != null && typelivre.length() < 1 ) || !typeList.contains(typelivre)) {
