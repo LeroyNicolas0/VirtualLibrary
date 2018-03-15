@@ -5,9 +5,9 @@
         <property name="serverName" value="localhost"/>
         <property name="portNumber" value="3306"/>
         <property name="databaseName" value="virtual_library"/>
-        <property name="User" value="root"/>
-        <property name="Password" value="noname"/>
-        <property name="URL" value="jdbc:mysql://localhost:3306/virtual_library?zeroDateTimeBehavior=convertToNull"/>
+        <property name="User" value="negorigin_virtua"/>
+        <property name="Password" value="virtuallibrary"/>
+        <property name="URL" value="jdbc:mysql://mysql-negorigin.alwaysdata.net/negorigin_virtuallibrary?zeroDateTimeBehavior=convertToNull"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="java:app/jdbc/virtual_library" object-type="user" pool-name="mysql_virtual_library_rootPool"/>
