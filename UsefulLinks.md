@@ -19,6 +19,6 @@ http://commons.apache.org/proper/commons-validator/
 https://stackoverflow.com/questions/5893349/java-how-to-add-library-files-in-netbeans
 
 - HTML, CSS, Javascript
-  - https://codepen.io/huange/pen/rbqsD
-  - http://www.html.am/templates/
-  - http://slimselectjs.com/methods/
+https://codepen.io/huange/pen/rbqsD
+http://www.html.am/templates/
+http://slimselectjs.com/methods/
