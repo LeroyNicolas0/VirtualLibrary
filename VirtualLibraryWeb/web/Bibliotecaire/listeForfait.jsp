@@ -1,7 +1,7 @@
 <%-- 
-    Document   : listeMotCle
-    Created on : Mar 16, 2018, 1:49:05 AM
-    Author     : atyla
+    Document   : listeForfait
+    Created on : 16 mars 2018, 04:51:37
+    Author     : Francis
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Liste des mots-clés</title>
+        <title>Liste des forfaits</title>
         <link type="text/css" rel="stylesheet" href="/VirtualLibraryWeb/inc/style.css" />
     </head>
     <body>
@@ -18,19 +18,23 @@
         
          <table>
             <tr>
-              <th>Mot-clé</th>
+              <th>Forfait</th>
+              <th>Tarif</th>
+              <th>Duree</th>
               <th>Modifier</th> 
               <th>Supprimer</th>
             </tr>
-            <c:forEach var="motcle" items="${list}">
+            <c:forEach var="forfait" items="${list}">
                 <tr>
-                  <td><c:out value="${motcle.nom}" /></td>
-                  <td><form action = "/VirtualLibraryWeb/Bibliotecaire/ModificationMotCle" method = "post"> 
-                          <input type="hidden" id="id" name="id" value="${motcle.motCleID}">
+                  <td><c:out value="${forfait.nom}" /></td>
+                  <td><c:out value="${forfait.tarif}" /></td>
+                  <td><c:out value="${forfait.duree}" /></td>
+                  <td><form action = "/VirtualLibraryWeb/Bibliotecaire/ModificationForfait" method = "post"> 
+                          <input type="hidden" id="id" name="id" value="${forfait.forfaitID}">
                           <input type="submit" name="modifier" value="Modifier"> </input>
                       </form></td>
                   <td><form action = "" method = "post"> 
-                          <input type="hidden" id="id" name="id" value="${motcle.motCleID}">
+                          <input type="hidden" id="id" name="id" value="${forfait.forfaitID}">
                           <input type="submit" name="supprimer" value="Supprimer"> </input>
                       </form>
                   </td>
