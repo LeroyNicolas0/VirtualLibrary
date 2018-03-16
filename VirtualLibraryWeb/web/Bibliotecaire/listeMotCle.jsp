@@ -25,7 +25,10 @@
             <c:forEach var="motcle" items="${list}">
                 <tr>
                   <td><c:out value="${motcle.nom}" /></td>
-                  <td><c:out value="mod" /></td>
+                  <td><form action = "/VirtualLibraryWeb/Bibliotecaire/ModificationMotCle" method = "post"> 
+                          <input type="hidden" id="id" name="id" value="${motcle.motCleID}">
+                          <input type="submit" name="modifier" value="Modifier"> </input>
+                      </form></td>
                   <td><form action = "" method = "post"> 
                           <input type="hidden" id="id" name="id" value="${motcle.motCleID}">
                           <input type="submit" name="supprimer" value="Supprimer"> </input>

@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ListeMotCle extends HttpServlet {
      public static final String ATT_LIST = "list";
      public static final String ATT_ID = "id";
+     public static final String ATT_SUP = "supprimer";
      private Map<String, String> erreurs      = new HashMap<String, String>();
 
     public static final String VUE_LIST   = "/Bibliotecaire/listeMotCle.jsp";
@@ -49,9 +50,6 @@ public class ListeMotCle extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getParameter(ATT_ID)==null){
-            throw new DAOException("nullnull");
-        }
         int id=Integer.parseInt(request.getParameter(ATT_ID).toString());
                 
         MotCle motCle=motCleDao.trouverParId(id);
