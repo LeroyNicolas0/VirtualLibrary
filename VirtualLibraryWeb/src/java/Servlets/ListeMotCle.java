@@ -6,10 +6,13 @@
 package Servlets;
 
 import Beans.MotCle;
+import Dao.DAOException;
 import Dao.MotCleDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ListeMotCle extends HttpServlet {
      public static final String ATT_LIST = "list";
+     public static final String ATT_ID = "id";
+     private Map<String, String> erreurs      = new HashMap<String, String>();
 
     public static final String VUE_LIST   = "/Bibliotecaire/listeMotCle.jsp";
     @EJB
@@ -30,6 +35,7 @@ public class ListeMotCle extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<MotCle> motCleList=motCleDao.getAll();
         request.setAttribute(ATT_LIST, motCleList);
+        request.setAttribute(ATT_ID, "");
         this.getServletContext().getRequestDispatcher( VUE_LIST  ).forward( request, response );
     }
 
@@ -42,11 +48,32 @@ public class ListeMotCle extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //processRequest(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(request.getParameter(ATT_ID)==null){
+            throw new DAOException("nullnull");
+        }
+        int id=Integer.parseInt(request.getParameter(ATT_ID).toString());
+                
+        MotCle motCle=motCleDao.trouverParId(id);
+        try {
+           motCleDao.delete(motCle); 
+        } catch ( Exception e ) {
+            setErreur("e", e.getMessage());
+        }
+        
+        request.setAttribute("erreur", erreurs);
+        List<MotCle> motCleList=motCleDao.getAll();
+        request.setAttribute(ATT_LIST, motCleList);
+        this.getServletContext().getRequestDispatcher( VUE_LIST  ).forward( request, response );
     }
-
+    
+    public Map<String, String> getErreurs() {
+        return erreurs;
+    }
+    
+    private void setErreur( String champ, String message ) {
+        erreurs.put( champ, message );
+    }
     /**
      * Returns a short description of the servlet.
      *

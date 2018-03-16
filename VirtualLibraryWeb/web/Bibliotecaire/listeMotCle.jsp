@@ -26,10 +26,15 @@
                 <tr>
                   <td><c:out value="${motcle.nom}" /></td>
                   <td><c:out value="mod" /></td>
-                  <td><c:out value="sup" /></td>
+                  <td><form action = "" method = "post"> 
+                          <input type="hidden" id="id" name="id" value="${motcle.motCleID}">
+                          <input type="submit" name="supprimer" value="Supprimer"> </input>
+                      </form>
+                  </td>
                </tr>
               </c:forEach>
-          </table>                                
+          </table>   
+         <span class="erreur">${erreur['e']}</span>
         <c:import url="/inc/footer.jsp" />  
     </body>
 </html>
