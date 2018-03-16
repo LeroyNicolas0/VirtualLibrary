@@ -25,6 +25,10 @@
         <servlet-class>Servlets.AjoutParticipant</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ListeParticipant</servlet-name>
+        <servlet-class>Servlets.ListeParticipant</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AjoutLivre</servlet-name>
         <servlet-class>Servlets.AjoutLivre</servlet-class>
     </servlet>
@@ -75,6 +79,10 @@
     <servlet-mapping>
         <servlet-name>ListeMotCle</servlet-name>
         <url-pattern>/Bibliotecaire/ListeMotCle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListeParticipant</servlet-name>
+        <url-pattern>/Bibliotecaire/ListeParticipant</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListeForfait</servlet-name>

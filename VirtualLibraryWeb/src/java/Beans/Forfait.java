@@ -5,6 +5,7 @@
  */
 package Beans;
 
+import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "forfait")
-public class Forfait {
+public class Forfait implements Serializable{
     
     
     @Id
@@ -37,8 +38,8 @@ public class Forfait {
     }
      
     
-    public void setForfaitID(Integer motCleID) {
-        this.forfaitID = motCleID;
+    public void setForfaitID(Integer forfaitID) {
+        this.forfaitID = forfaitID;
     }
     
     @Basic(optional = false)
