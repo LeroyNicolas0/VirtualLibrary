@@ -11,6 +11,7 @@ Projet développé dans le cadre du cours 8INF853 Architecture des applications 
 Un site pour une bibliothèque virtuelle avec Java EE.
 
 # Technologies et version
-- Tomcat 7.0.85
+- ~Tomcat 7.0.85~
+- Glassfish 4.1.1
 - Netbeans 8.2
-
+- Always data (https://www.alwaysdata.com/fr/)
