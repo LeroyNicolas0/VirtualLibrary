@@ -6,6 +6,7 @@
 package forms;
 
 import Beans.Forfait;
+import Dao.ForfaitDao;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +19,16 @@ public class AjoutForfaitForm {
     private static final String NOM  = "nom";
     private static final String TARIF   = "tarif";
     private static final String DUREE   = "duree";
+    
+    
    
-    private String              resultat;
+    private String resultat;
     private Map<String, String> erreurs      = new HashMap<String, String>();
+    private ForfaitDao forfaitDao;
+    
+    public AjoutForfaitForm( ForfaitDao forfaitDao ) {
+        this.forfaitDao = forfaitDao;
+    }
 
     public String getResultat() {
         return resultat;
@@ -64,7 +72,8 @@ public class AjoutForfaitForm {
         
 
         if ( erreurs.isEmpty() ) {
-            resultat = dureeInt.toString();
+             forfaitDao.creer( forfait );
+            resultat = "Succès de l'ajout";
         } else {
             resultat = "Échec de l'inscription.";
         }

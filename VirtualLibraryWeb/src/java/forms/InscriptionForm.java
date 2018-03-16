@@ -8,6 +8,7 @@ package forms;
 import Beans.Lecteur;
 import Beans.Utilisateur;
 import Dao.UtilisateurDao;
+import java.security.MessageDigest;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -83,7 +84,7 @@ public final class InscriptionForm {
         utilisateur.setDateInscription( date );
         
         try {
-            validationMotsDePasse( motDePasse, confirmation );
+            motDePasse=validationMotsDePasse( motDePasse, confirmation );
         } catch ( Exception e ) {
             setErreur( PASS, e.getMessage() );
             setErreur( CONF, null );
@@ -124,16 +125,26 @@ public final class InscriptionForm {
     }
 }
 
-    private void validationMotsDePasse( String motDePasse, String confirmation ) throws Exception {
+    private String validationMotsDePasse( String motDePasse, String confirmation ) throws Exception {
         if ( motDePasse != null && confirmation != null ) {
             if ( !motDePasse.equals( confirmation ) ) {
                 throw new Exception( "Les mots de passe entrés sont différents, merci de les saisir à nouveau." );
             } else if ( motDePasse.length() < 3 ) {
                 throw new Exception( "Les mots de passe doivent contenir au moins 3 caractères." );
+            } else {
+                MessageDigest md = MessageDigest.getInstance("SHA-256");
+                md.update("oui".getBytes());
+                byte[] bytes = md.digest(motDePasse.getBytes());
+                StringBuilder sb = new StringBuilder();
+                for(int i=0; i< bytes.length ;i++) {
+                    sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+                }
+                motDePasse = sb.toString();
             }
         } else {
             throw new Exception( "Merci de saisir et confirmer votre mot de passe." );
         }
+        return motDePasse;
     }
 
     private void validationNom( String nom ) throws Exception {

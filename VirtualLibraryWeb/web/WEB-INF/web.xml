@@ -29,6 +29,10 @@
         <servlet-class>Servlets.AjoutLivre</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AjoutMotCle</servlet-name>
+        <servlet-class>Servlets.AjoutMotCle</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AjoutForfait</servlet-name>
         <servlet-class>Servlets.AjoutForfait</servlet-class>
     </servlet>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>AjoutForfait</servlet-name>
         <url-pattern>/Bibliotecaire/AjoutForfait</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjoutMotCle</servlet-name>
+        <url-pattern>/Bibliotecaire/AjoutMotCle</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

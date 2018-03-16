@@ -10,7 +10,7 @@ import javax.persistence.Query;
 
 @Stateless
 public class UtilisateurDao {
-    private static final String JPQL_SELECT_PAR_EMAIL = "SELECT u FROM Lecteur u WHERE u.mail=:mail";
+    private static final String JPQL_SELECT_PAR_EMAIL = "SELECT u FROM Utilisateur u WHERE u.mail=:mail";
     private static final String PARAM_EMAIL           = "mail";
 
     // Injection du manager, qui s'occupe de la connexion avec la BDD
@@ -27,12 +27,12 @@ public class UtilisateurDao {
     }
 
     // Recherche d'un utilisateur à partir de son adresse email
-    public Lecteur trouver( String email ) throws DAOException {
-        Lecteur utilisateur = null;
+    public Utilisateur trouver( String email ) throws DAOException {
+        Utilisateur utilisateur = null;
         Query requete = em.createQuery( JPQL_SELECT_PAR_EMAIL );
         requete.setParameter( PARAM_EMAIL, email );
         try {
-            utilisateur = (Lecteur) requete.getSingleResult();
+            utilisateur = (Utilisateur) requete.getSingleResult();
         } catch ( NoResultException e ) {
             return null;
         } catch ( Exception e ) {

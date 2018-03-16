@@ -8,6 +8,8 @@ package forms;
 import Beans.Bibliothecaire;
 import Beans.Lecteur;
 import Beans.Utilisateur;
+import Dao.UtilisateurDao;
+import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +24,11 @@ public final class ConnexionForm {
 
     private String              resultat;
     private Map<String, String> erreurs      = new HashMap<String, String>();
+    private UtilisateurDao utilisateurDao;
+
+    public ConnexionForm( UtilisateurDao utilisateurDao ) {
+        this.utilisateurDao = utilisateurDao;
+    }
 
     public String getResultat() {
         return resultat;
@@ -35,7 +42,7 @@ public final class ConnexionForm {
         /* Récupération des champs du formulaire */
         String email = getValeurChamp( request, CHAMP_EMAIL );
         String motDePasse = getValeurChamp( request, CHAMP_PASS );
-
+        Boolean success=false;
         Utilisateur utilisateur;
 
         /* Validation du champ email. */
@@ -45,20 +52,27 @@ public final class ConnexionForm {
             setErreur( CHAMP_EMAIL, e.getMessage() );
         }
         
-
-        /* Validation du champ mot de passe. */
-        try {
-            validationMotDePasse( motDePasse );
-        } catch ( Exception e ) {
-            setErreur( CHAMP_PASS, e.getMessage() );
+        Utilisateur utilverif = this.utilisateurDao.trouver(email);
+        
+        if(utilverif != null){
+            /* Validation du champ mot de passe. */
+                try {
+                   success= validationMotDePasse( motDePasse, utilverif.getMotDePasse() );
+                } catch ( Exception e ) {
+                    setErreur( CHAMP_PASS, e.getMessage() );
+                }
         }
+        if(success == false){
+            setErreur( "non trouve", " non trouve " );
+        }
+        
         
 
         /* Initialisation du résultat global de la validation. */
-        if ( erreurs.isEmpty() ) {
+        if ( erreurs.isEmpty() && success) {
             resultat = "Succès de la connexion.";
         } else {
-            resultat = "Échec de la connexion.";
+            resultat = "Échec de la connexion.: Mot de passe ou email invalide";
         }
         
         //TODO check dans la bd
@@ -86,11 +100,17 @@ public final class ConnexionForm {
     /**
      * Valide le mot de passe saisi.
      */
-    private void validationMotDePasse( String motDePasse ) throws Exception {
+    private Boolean validationMotDePasse( String motDePasse, String motDePasse2) throws Exception {
         if ( motDePasse != null ) {
-            if ( motDePasse.length() < 3 ) {
-                throw new Exception( "Le mot de passe doit contenir au moins 3 caractères." );
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update("oui".getBytes());
+            byte[] bytes = md.digest(motDePasse.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++) {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
             }
+            motDePasse = sb.toString();
+            return motDePasse2.equals(motDePasse);
         } else {
             throw new Exception( "Merci de saisir votre mot de passe." );
         }

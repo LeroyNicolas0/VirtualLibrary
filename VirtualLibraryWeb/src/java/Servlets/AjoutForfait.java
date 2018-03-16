@@ -6,9 +6,10 @@
 package Servlets;
 
 import Beans.Forfait;
+import Dao.ForfaitDao;
 import forms.AjoutForfaitForm;
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +24,10 @@ public class AjoutForfait extends HttpServlet {
     public static final String ATT_FORM = "form";
 
     public static final String VUE_FORM   = "/Bibliotecaire/ajoutForfait.jsp";
+     public static final String VUE_SUCCES = "/Bibliotecaire/ajoutForfait.jsp";
     
-    
+     @EJB
+    private ForfaitDao forfaitDao;
 		
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
         /* Affichage de la page d'inscription */
@@ -35,7 +38,7 @@ public class AjoutForfait extends HttpServlet {
 	
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
         /* Préparation de l'objet formulaire */
-        AjoutForfaitForm form = new AjoutForfaitForm();
+        AjoutForfaitForm form = new AjoutForfaitForm(forfaitDao);
 		
         /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
         Forfait forfait = form.AjoutForfait(request );
@@ -45,7 +48,13 @@ public class AjoutForfait extends HttpServlet {
         request.setAttribute( ATT_FORFAIT, forfait );
 		
       
-        this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
+        if ( form.getErreurs().isEmpty() ) {
+            /* Si aucune erreur, alors affichage de la fiche récapitulative */
+            this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
+        } else {
+            /* Sinon, ré-affichage du formulaire de création avec les erreurs */
+            this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
+        }
    
     }
 }
