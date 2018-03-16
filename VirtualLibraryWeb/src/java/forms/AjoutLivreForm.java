@@ -33,8 +33,8 @@ public class AjoutLivreForm {
    private static final String NBPAGES    = "nbpages";
    private static final String LANGUE    = "langue";
    private static final String TYPELIVRE    = "typelivre";
-   private static final String AUTEURS    = "auteurs";
-    private static final String MOTSCLES    = "motscles";
+   private static final String AUTEURS    = "auteurs[]";
+    private static final String MOTSCLES    = "motscles[]";
 
     private String              resultat;
     private Map<String, String> erreurs      = new HashMap<String, String>();
@@ -71,13 +71,13 @@ public class AjoutLivreForm {
         
         Document livre = new Document();
         
-//        for (int i=0;i<auteurs.length; i++) {
-//            livre.addParticipantCollection(participantDao.trouverParId(Integer.parseInt(auteurs[i])));         
-//        }
-//        
-//        for (String motcle : motscles) {
-//            livre.addMotCleCollection(motCleDao.trouverParId(Integer.parseInt(motcle)));         
-//        }
+        for (int i=0;i<auteurs.length; i++) {
+            livre.addParticipantCollection(participantDao.trouverParId(Integer.parseInt(auteurs[i])));         
+        }
+        
+        for (String motcle : motscles) {
+            livre.addMotCleCollection(motCleDao.trouverParId(Integer.parseInt(motcle)));         
+        }
         
         try {
             validationTitre( titre );
@@ -131,7 +131,7 @@ public class AjoutLivreForm {
         if ( erreurs.isEmpty() ) {
             //livreDao.creer(livre);
             
-            resultat = "Succès de l'inscription." + auteurs.toString();
+            resultat = "Succès de l'inscription.";
         } else {
             resultat = "Échec de l'inscription.";
         }
