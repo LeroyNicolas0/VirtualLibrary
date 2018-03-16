@@ -1,7 +1,7 @@
 <%-- 
-    Document   : listeParticipant
-    Created on : 16 mars 2018, 04:33:52
-    Author     : nicolas
+    Document   : listeForfait
+    Created on : 16 mars 2018, 04:51:37
+    Author     : Francis
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Liste des Participant</title>
+        <title>Liste des forfaits</title>
         <link type="text/css" rel="stylesheet" href="/VirtualLibraryWeb/inc/style.css" />
     </head>
     <body>
@@ -18,25 +18,23 @@
         
          <table>
             <tr>
-              <th>Participant</th>
-              <th>Prenom</th>
-              <th>Pseudonyme</th>
-              <th>Date de naissance</th>
+              <th>Forfait</th>
+              <th>Tarif</th>
+              <th>Duree</th>
               <th>Modifier</th> 
               <th>Supprimer</th>
             </tr>
-            <c:forEach var="participant" items="${list}">
+            <c:forEach var="forfait" items="${list}">
                 <tr>
-                  <td><c:out value="${participant.nom}" /></td>
-                  <td><c:out value="${participant.prenom}" /></td>
-                  <td><c:out value="${participant.pseudonyme}" /></td>
-                  <td><c:out value="${participant.dateNaissance}" /></td>
-                  <td><form action = "/VirtualLibraryWeb/Bibliotecaire/ModificationParticipant" method = "post"> 
-                          <input type="hidden" id="id" name="id" value="${participant.participantId}">
+                  <td><c:out value="${forfait.nom}" /></td>
+                  <td><c:out value="${forfait.tarif}" /></td>
+                  <td><c:out value="${forfait.duree}" /></td>
+                  <td><form action = "/VirtualLibraryWeb/Bibliotecaire/ModificationForfait" method = "post"> 
+                          <input type="hidden" id="id" name="id" value="${forfait.forfaitID}">
                           <input type="submit" name="modifier" value="Modifier"> </input>
                       </form></td>
                   <td><form action = "" method = "post"> 
-                          <input type="hidden" id="id" name="id" value="${participant.participantId}">
+                          <input type="hidden" id="id" name="id" value="${forfait.forfaitID}">
                           <input type="submit" name="supprimer" value="Supprimer"> </input>
                       </form>
                   </td>
@@ -47,4 +45,3 @@
         <c:import url="/inc/footer.jsp" />  
     </body>
 </html>
-

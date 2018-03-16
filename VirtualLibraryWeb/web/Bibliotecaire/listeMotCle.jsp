@@ -18,7 +18,7 @@
         
          <table>
             <tr>
-              <th>Mot-cé</th>
+              <th>Mot-clé</th>
               <th>Modifier</th> 
               <th>Supprimer</th>
             </tr>

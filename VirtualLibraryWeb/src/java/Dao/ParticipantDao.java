@@ -77,5 +77,12 @@ public class ParticipantDao {
         } catch ( Exception e ) {
             throw new DAOException( e );
         }
+        
+         
+        
     }
+    
+        public void update( Participant participant ) throws DAOException {
+             em.merge(participant);
+        }
 }
