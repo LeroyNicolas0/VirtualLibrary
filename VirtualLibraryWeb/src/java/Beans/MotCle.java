@@ -5,6 +5,7 @@
  */
 package Beans;
 
+import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "mot_cle")
-public class MotCle {
+public class MotCle implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)

@@ -16,7 +16,7 @@
     <body>
          <c:import url="/inc/header.jsp" />
         
-        <form method="post" action="/Bibliotecaire/AjoutMotCle">
+        <form method="post" action="">
             <fieldset>
                 <legend>Ajout de mot-clé</legend>
                 <p>Vous pouvez ajoutez un mot-clé via ce formulaire.</p>
