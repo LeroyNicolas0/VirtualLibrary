@@ -10,10 +10,11 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Inscription</title>
-        <link type="text/css" rel="stylesheet" href="<c:url value="/inc/style.css"/>" />
+        <title>Ajout de Forfait</title>
+        <link type="text/css" rel="stylesheet" href="/VirtualLibraryWeb/inc/style.css" />
     </head>
     <body>
+        <c:import url="/inc/header.jsp" />
         <form method="post" action="AjoutForfait">
             <fieldset>
                 <legend>Ajouter un forfait</legend>
@@ -41,5 +42,6 @@
                 <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
             </fieldset>
         </form>
+    <c:import url="/inc/footer.jsp" />         
     </body>
 </html>
