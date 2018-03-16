@@ -33,6 +33,10 @@
         <servlet-class>Servlets.AjoutMotCle</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ListeMotCle</servlet-name>
+        <servlet-class>Servlets.ListeMotCle</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AjoutForfait</servlet-name>
         <servlet-class>Servlets.AjoutForfait</servlet-class>
     </servlet>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>AjoutMotCle</servlet-name>
         <url-pattern>/Bibliotecaire/AjoutMotCle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListeMotCle</servlet-name>
+        <url-pattern>/Bibliotecaire/ListeMotCle</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
