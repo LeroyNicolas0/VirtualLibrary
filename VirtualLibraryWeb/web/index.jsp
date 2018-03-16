@@ -19,7 +19,7 @@
         
         <div class="wrap">
             <div class="search">
-              <form method="post" action="/Search">
+              <form method="post" action="/VirtualLibraryWeb/Search">
                 <fieldset>
                 <input type="text" name="searchTerm" class="searchTerm" placeholder="What are you looking for?">
                 <!--<select  id="choixsearch" name="choixsearch">
@@ -34,11 +34,27 @@
             </div>
         </div>
         
+        
+        
         <div class="under-search">
           <%-- Vérification de la présence d'un objet utilisateur en session --%>
             <c:if test="${!empty sessionScope.sessionUtilisateur}">
-                <p><a href="<c:url value="/Bibliotecaire/AjoutParticipant"/>">Ajout participant</a></p>
-                <p><a href="<c:url value="/Bibliotecaire/AjoutLivre"/>">Ajout livre</a></p>
+                <div id="content">
+				<div id="content-inner">
+				
+					<main id="contentbar">
+						<div class="article">
+                                                    <h3><p><a href="<c:url value="/Bibliotecaire/ListeForfait"/>">Liste forfait</a></p></h3>
+						
+							<h3><p><a href="<c:url value="/Bibliotecaire/ListeMotCle"/>">Liste Tag</a></p></h3>
+						
+							<h3><p><a href="<c:url value="/Bibliotecaire/ListeParticipant"/>">Liste Auteur</a></p></h3>
+						</div>
+                                               
+					</main>
+                                    </div>
+                    </div>
+               
             </c:if>
         </div>   
             

@@ -135,7 +135,7 @@ input.searchTerm {
 }
 .searchButton {
   position: absolute;  
-  right: -150px;
+  right: -50px;
   width: 40px;
   height: 36px;
   border: 1px solid green;
@@ -146,7 +146,10 @@ input.searchTerm {
   cursor: pointer;
   font-size: 20px;
 }
-
+.wrap from{
+    border :0;
+    color: white;
+}
 /*Resize the wrap to see the search bar change!*/
 .wrap{
   width: 30%;
