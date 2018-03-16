@@ -24,7 +24,7 @@
               <th>Date de naissance</th>
               <th>Modifier</th> 
               <th>Supprimer</th>
-              <form action = "/VirtualLibraryWeb/Bibliotecaire/AjoutParticipant" method = "post"> 
+              <form action = "/VirtualLibraryWeb/Bibliotecaire/AjoutParticipant" method = "get"> 
                           <input type="submit" name="modifier" value="Ajouter"> </input>
                       </form>
             </tr>

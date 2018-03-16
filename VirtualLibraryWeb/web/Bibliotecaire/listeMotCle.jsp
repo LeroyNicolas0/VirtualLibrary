@@ -21,7 +21,7 @@
               <th>Mot-clé</th>
               <th>Modifier</th> 
               <th>Supprimer</th>
-              <form action = "/VirtualLibraryWeb/Bibliotecaire/AjoutMotCle" method = "post"> 
+              <form action = "/VirtualLibraryWeb/Bibliotecaire/AjoutMotCle" method = "get"> 
                           <input type="submit" name="modifier" value="Ajouter"> </input>
                       </form>
             </tr>

@@ -23,7 +23,7 @@
               <th>Duree</th>
               <th>Modifier</th> 
               <th>Supprimer</th>
-              <form action = "/VirtualLibraryWeb/Bibliotecaire/AjoutForfait" method = "post"> 
+              <form action = "/VirtualLibraryWeb/Bibliotecaire/AjoutForfait" method = "get"> 
                           <input type="submit" name="modifier" value="Ajouter"> </input>
                       </form>
             </tr>
