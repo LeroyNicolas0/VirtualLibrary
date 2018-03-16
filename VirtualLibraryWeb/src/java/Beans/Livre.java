@@ -5,13 +5,29 @@
  */
 package Beans;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  *
  * @author atyla
  */
+@Entity
+@Table(name="document")
 public class Livre extends Document{
+    @Size(max = 13)
+    @Column(name = "isbn")
     private String isbn;
-    private int nbPages;
+    @Column(name = "nombre_pages")
+    private Integer nombrePages;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "langue")
     private String langue;
     private String typeLivre;
 
@@ -24,11 +40,11 @@ public class Livre extends Document{
     }
 
     public int getNbPages() {
-        return nbPages;
+        return nombrePages;
     }
 
     public void setNbPages(int nbPages) {
-        this.nbPages = nbPages;
+        this.nombrePages = nbPages;
     }
 
     public String getLangue() {
