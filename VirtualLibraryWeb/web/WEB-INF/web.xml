@@ -49,16 +49,16 @@
         <servlet-class>Servlets.ListeForfait</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ListeParticipant</servlet-name>
-        <servlet-class>Servlets.ListeParticipant</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ModificationMotCle</servlet-name>
         <servlet-class>Servlets.ModificationMotCle</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ModificationForfait</servlet-name>
         <servlet-class>Servlets.ModificationForfait</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificationParticipant</servlet-name>
+        <servlet-class>Servlets.ModificationParticipant</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Inscription</servlet-name>
@@ -107,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>ModificationForfait</servlet-name>
         <url-pattern>/ModificationForfait</url-pattern>
+   </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificationParticipant</servlet-name>
+        <url-pattern>/Bibliotecaire/ModificationParticipant</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

@@ -29,7 +29,10 @@
                   <td><c:out value="${forfait.nom}" /></td>
                   <td><c:out value="${forfait.tarif}" /></td>
                   <td><c:out value="${forfait.duree}" /></td>
-                  <td><c:out value="mod" /></td>
+                  <td><form action = "/VirtualLibraryWeb/Bibliotecaire/ModificationForfait" method = "post"> 
+                          <input type="hidden" id="id" name="id" value="${forfait.forfaitID}">
+                          <input type="submit" name="modifier" value="Modifier"> </input>
+                      </form></td>
                   <td><form action = "" method = "post"> 
                           <input type="hidden" id="id" name="id" value="${forfait.forfaitID}">
                           <input type="submit" name="supprimer" value="Supprimer"> </input>

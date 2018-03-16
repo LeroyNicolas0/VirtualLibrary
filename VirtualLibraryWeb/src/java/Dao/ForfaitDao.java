@@ -72,7 +72,5 @@ public class ForfaitDao {
     }
      public void update( Forfait forfait ) throws DAOException {
         em.merge(forfait);
-//        MotCle motC= (MotCle)em.find(MotCle.class, motCle);
-//        motC.setNom(motCle.getNom());
     }
 }
