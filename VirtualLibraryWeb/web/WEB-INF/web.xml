@@ -40,6 +40,10 @@
         <servlet-name>AjoutForfait</servlet-name>
         <servlet-class>Servlets.AjoutForfait</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListeParticipant</servlet-name>
+        <servlet-class>Servlets.ListeParticipant</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inscription</servlet-name>
         <url-pattern>/Inscription</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>ListeMotCle</servlet-name>
         <url-pattern>/Bibliotecaire/ListeMotCle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListeParticipant</servlet-name>
+        <url-pattern>/Bibliotecaire/ListeParticipant</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
