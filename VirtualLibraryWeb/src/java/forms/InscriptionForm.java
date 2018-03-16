@@ -7,6 +7,10 @@ package forms;
 
 import Beans.Lecteur;
 import Beans.Utilisateur;
+import Dao.UtilisateurDao;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,11 +24,19 @@ public final class InscriptionForm {
     private static final String EMAIL  = "email";
     private static final String PASS   = "motdepasse";
     private static final String CONF   = "confirmation";
-    private static final String LOGIN    = "nom";
-   
+    private static final String LOGIN    = "login";
+    private static final String NOM    = "nom";
+    private static final String PRENOM    = "prenom";
+    private static final String DATENAISSANCE    = "datenaissance";
+    
     private String              resultat;
     private Map<String, String> erreurs      = new HashMap<String, String>();
+    private UtilisateurDao utilisateurDao;
 
+    public InscriptionForm( UtilisateurDao utilisateurDao ) {
+        this.utilisateurDao = utilisateurDao;
+    }
+    
     public String getResultat() {
         return resultat;
     }
@@ -34,12 +46,17 @@ public final class InscriptionForm {
     }
     
     public Utilisateur inscrireUtilisateur( HttpServletRequest request ) {
+        String nom = getValeurChamp( request, NOM );
+        String datenaissance = getValeurChamp( request, DATENAISSANCE );
+        String prenom = getValeurChamp( request, PRENOM );
         String email = getValeurChamp( request, EMAIL );
         String motDePasse = getValeurChamp( request, PASS );
         String confirmation = getValeurChamp( request, CONF );
-        String nom = getValeurChamp( request, LOGIN );
+        String login = getValeurChamp( request, LOGIN );
+        Timestamp dateinscription = new Timestamp( System.currentTimeMillis() );
 
-        Utilisateur utilisateur = new Lecteur();
+
+        Utilisateur utilisateur = new Utilisateur();
 
         try {
             validationEmail( email );
@@ -47,7 +64,24 @@ public final class InscriptionForm {
             setErreur( EMAIL, e.getMessage() );
         }
         utilisateur.setEmail( email );
-
+        
+        try {
+            validationNom( login );
+        } catch ( Exception e ) {
+            setErreur( LOGIN, e.getMessage() );
+        }
+        utilisateur.setLogin(login );
+        
+        Date date = null;
+        try {
+            date=validationDateNaissance(datenaissance );
+        } catch ( Exception e ) {
+            setErreur( DATENAISSANCE, e.getMessage() );
+        }
+        utilisateur.setDateNaissance(date );
+        
+        utilisateur.setDateInscription( date );
+        
         try {
             validationMotsDePasse( motDePasse, confirmation );
         } catch ( Exception e ) {
@@ -62,13 +96,21 @@ public final class InscriptionForm {
             setErreur( LOGIN, e.getMessage() );
         }
         utilisateur.setNom( nom );
-
+        
+        try {
+            validationNom( prenom );
+        } catch ( Exception e ) {
+            setErreur( LOGIN, e.getMessage() );
+        }
+        utilisateur.setPrenom( prenom );
+        
         if ( erreurs.isEmpty() ) {
+            utilisateurDao.creer( utilisateur );
             resultat = "Succès de l'inscription.";
         } else {
             resultat = "Échec de l'inscription.";
         }
-
+        
         return utilisateur;
     }
     
@@ -120,4 +162,12 @@ public final class InscriptionForm {
         }
     }
     
+    private Date validationDateNaissance( String stringDate ) throws Exception {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date =formatter.parse(stringDate);
+        if ( date==null ||  date.after(new Date() )) {
+            throw new Exception( "La date de naissance ne peut être dans le futur." );
+        }
+        return date;
+    }
 }

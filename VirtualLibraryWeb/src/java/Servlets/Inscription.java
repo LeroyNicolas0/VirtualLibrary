@@ -5,11 +5,17 @@
  */
 package Servlets;
 
+import Beans.Lecteur;
 import Beans.Utilisateur;
+import Dao.UtilisateurDao;
 import forms.InscriptionForm;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +25,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author nicolas
  */
+//@WebServlet( urlPatterns = { "/inscription" } )
+
 public class Inscription extends HttpServlet {
 
     public static final String ATT_USER = "utilisateur";
@@ -27,7 +35,10 @@ public class Inscription extends HttpServlet {
     
     public static final String VUE_SUCCES = "/WEB-INF/afficherClient.jsp";
     public static final String VUE_FORM   = "/WEB-INF/Inscription.jsp";
-		
+    
+    @EJB
+    private UtilisateurDao     utilisateurDao;
+    	
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
         /* Affichage de la page d'inscription */
         this.getServletContext().getRequestDispatcher( VUE_FORM  ).forward( request, response );
@@ -35,7 +46,7 @@ public class Inscription extends HttpServlet {
 	
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
         /* Préparation de l'objet formulaire */
-        InscriptionForm form = new InscriptionForm();
+        InscriptionForm form = new InscriptionForm(utilisateurDao);
 		
         /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
         Utilisateur utilisateur = form.inscrireUtilisateur( request );
@@ -48,7 +59,7 @@ public class Inscription extends HttpServlet {
         if ( form.getErreurs().isEmpty() ) {
             session.setAttribute( ATT_SESSION_USER, utilisateur );
             /* Si aucune erreur, alors affichage de la fiche récapitulative */
-            this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
+            this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
         } else {
             session.setAttribute( ATT_SESSION_USER, null );
             /* Sinon, ré-affichage du formulaire de création avec les erreurs */

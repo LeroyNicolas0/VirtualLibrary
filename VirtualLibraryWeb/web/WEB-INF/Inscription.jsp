@@ -36,9 +36,24 @@
                 <span class="erreur">${form.erreurs['confirmation']}</span>
                 <br />
 
-                <label for="nom">Nom d'utilisateur</label>
+                <label for="nom">Login</label>
+                <input type="text" id="login" name="login" value="<c:out value="${utilisateur.login}"/>" size="20" maxlength="20" />
+                <span class="erreur">${form.erreurs['login']}</span>
+                <br />
+                
+                <label for="nom">Nom</label>
                 <input type="text" id="nom" name="nom" value="<c:out value="${utilisateur.nom}"/>" size="20" maxlength="20" />
                 <span class="erreur">${form.erreurs['nom']}</span>
+                <br />
+                
+                <label for="nom">Prenom</label>
+                <input type="text" id="prenom" name="prenom" value="<c:out value="${utilisateur.prenom}"/>" size="20" maxlength="20" />
+                <span class="erreur">${form.erreurs['prenom']}</span>
+                <br />
+                
+                <label for="dateparution">Date de naissance</label>
+                <input type="date" name="datenaissance" value="<c:out value="${utilisateur.dateNaissance}"/>" >
+                <span class="erreur">${form.erreurs['datenaissance']}</span>
                 <br />
 
                 <input type="submit" value="Inscription" class="sansLabel" />

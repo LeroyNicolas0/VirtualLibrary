@@ -5,11 +5,19 @@
  */
 package Beans;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  *
  * @author atyla
  */
-public class Lecteur extends Utilisateur{
+
+public class Lecteur extends Utilisateur implements Serializable{
+
+    public Lecteur() {
+    }
     
     //methodes pour emprunter, s'abonner, etc
 }
