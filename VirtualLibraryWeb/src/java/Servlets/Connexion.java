@@ -7,9 +7,11 @@ package Servlets;
 
 import Beans.Lecteur;
 import Beans.Utilisateur;
+import Dao.UtilisateurDao;
 import forms.ConnexionForm;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +29,9 @@ public class Connexion extends HttpServlet {
     public static final String ATT_SESSION_USER = "sessionUtilisateur";
     public static final String VUE              = "/WEB-INF/connexion.jsp";
     public static final String URL_REDIRECTION = "/VirtualLibraryWeb/";
+    
+    @EJB
+    private UtilisateurDao     utilisateurDao;
 
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -41,7 +46,7 @@ public class Connexion extends HttpServlet {
 
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         /* Préparation de l'objet formulaire */
-        ConnexionForm form = new ConnexionForm();
+        ConnexionForm form = new ConnexionForm(utilisateurDao);
 
         /* Traitement de la requête et récupération du bean en résultant */
         Utilisateur utilisateur = form.connecterUtilisateur( request );
