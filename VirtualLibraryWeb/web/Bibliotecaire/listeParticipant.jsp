@@ -24,6 +24,9 @@
               <th>Date de naissance</th>
               <th>Modifier</th> 
               <th>Supprimer</th>
+              <form action = "/VirtualLibraryWeb/Bibliotecaire/AjoutParticipant" method = "post"> 
+                          <input type="submit" name="modifier" value="Ajouter"> </input>
+                      </form>
             </tr>
             <c:forEach var="participant" items="${list}">
                 <tr>

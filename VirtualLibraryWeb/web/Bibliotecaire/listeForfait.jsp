@@ -23,10 +23,11 @@
               <th>Duree</th>
               <th>Modifier</th> 
               <th>Supprimer</th>
-            </tr>
-            <form action = "/VirtualLibraryWeb/Bibliotecaire/AjoutForfait" method = "post"> 
+              <form action = "/VirtualLibraryWeb/Bibliotecaire/AjoutForfait" method = "post"> 
                           <input type="submit" name="modifier" value="Ajouter"> </input>
                       </form>
+            </tr>
+            
             <c:forEach var="forfait" items="${list}">
                 <tr>
                   <td><c:out value="${forfait.nom}" /></td>

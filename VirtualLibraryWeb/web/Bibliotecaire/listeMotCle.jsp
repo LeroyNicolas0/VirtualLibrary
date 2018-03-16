@@ -21,6 +21,9 @@
               <th>Mot-clé</th>
               <th>Modifier</th> 
               <th>Supprimer</th>
+              <form action = "/VirtualLibraryWeb/Bibliotecaire/AjoutMotCle" method = "post"> 
+                          <input type="submit" name="modifier" value="Ajouter"> </input>
+                      </form>
             </tr>
             <c:forEach var="motcle" items="${list}">
                 <tr>
