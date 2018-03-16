@@ -80,4 +80,10 @@ public class MotCleDao {
             throw new DAOException( e );
         }
     }
+    
+    public void update( MotCle motCle ) throws DAOException {
+        em.merge(motCle);
+//        MotCle motC= (MotCle)em.find(MotCle.class, motCle);
+//        motC.setNom(motCle.getNom());
+    }
 }
