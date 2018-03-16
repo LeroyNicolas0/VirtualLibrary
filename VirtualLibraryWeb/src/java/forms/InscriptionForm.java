@@ -8,6 +8,7 @@ package forms;
 import Beans.Lecteur;
 import Beans.Utilisateur;
 import Dao.UtilisateurDao;
+import com.howtodoinjava.hashing.password.demo.bcrypt.BCrypt;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -83,7 +84,7 @@ public final class InscriptionForm {
         utilisateur.setDateInscription( date );
         
         try {
-            validationMotsDePasse( motDePasse, confirmation );
+            motDePasse=validationMotsDePasse( motDePasse, confirmation );
         } catch ( Exception e ) {
             setErreur( PASS, e.getMessage() );
             setErreur( CONF, null );
@@ -124,16 +125,19 @@ public final class InscriptionForm {
     }
 }
 
-    private void validationMotsDePasse( String motDePasse, String confirmation ) throws Exception {
+    private String validationMotsDePasse( String motDePasse, String confirmation ) throws Exception {
         if ( motDePasse != null && confirmation != null ) {
             if ( !motDePasse.equals( confirmation ) ) {
                 throw new Exception( "Les mots de passe entrés sont différents, merci de les saisir à nouveau." );
             } else if ( motDePasse.length() < 3 ) {
                 throw new Exception( "Les mots de passe doivent contenir au moins 3 caractères." );
+            } else {
+                motDePasse=BCrypt.hashpw(motDePasse, BCrypt.gensalt(12));
             }
         } else {
             throw new Exception( "Merci de saisir et confirmer votre mot de passe." );
         }
+        return motDePasse;
     }
 
     private void validationNom( String nom ) throws Exception {
