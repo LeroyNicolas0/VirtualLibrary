@@ -14,6 +14,7 @@
         <link type="text/css" rel="stylesheet" href="<c:url value="/inc/style.css"/>" />
     </head>
     <body>
+         <c:import url="/inc/header.jsp" />
         <form method="post" action="AjoutParticipant">
             <fieldset>
                 <legend>Ajouter un participant</legend>
@@ -34,16 +35,20 @@
                 <span class="erreur">${form.erreurs['pseudonyme']}</span>
                 <br />
                 
-                <label for="nom">Type Participant</label>
+                <label for="dateparution">Date de naissance</label>
+                <input type="date" name="datenaissance" value="<c:out value="${participant.dateNaissance}"/>" >
+                <span class="erreur">${form.erreurs['datenaissance']}</span>
+                <br />
+                
+                <label for="typeparticipant">Type Participant</label>
                 <input list="typeparticipant" name="typeparticipant">
                     <datalist id="typeparticipant">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
+                        
+                      <c:forEach var="name"  items="${requestScope['typeparti']}" >
+                            <option value="${name}">
+                        </c:forEach>
                     </datalist>
-                <span class="erreur">${form.erreurs['typeParticipant']}</span>
+                <span class="erreur">${form.erreurs['typeparticipant']}</span>
                 <br />
                 
                 <input type="submit" value="Ajout Participant" class="sansLabel" />
@@ -52,5 +57,6 @@
                 <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
             </fieldset>
         </form>
+             <c:import url="/inc/footer.jsp" />            
     </body>
 </html>
