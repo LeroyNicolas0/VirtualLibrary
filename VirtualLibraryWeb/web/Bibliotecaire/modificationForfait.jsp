@@ -23,19 +23,19 @@
 
                 <label for="nom">Forfait </label>
                 <input type="hidden" id="id" name="id" value="${forfait.forfaitID}">
-                <input type="nom" id="nom" name="nom" value="<c:out value="${forfait.nom}"/>" size="20" maxlength="20" />
+                <input type="text" id="nom" name="nom" value="<c:out value="${forfait.nom}"/>" size="20" maxlength="20" />
                 <span class="erreur">${form.erreurs['nom']}</span>
                 <br />
                 
                 <label for="nom">tarif </label>
-                <input type="hidden" id="id" name="id" value="${forfait.forfaitID}">
-                <input type="tarif" id="tarif" name="tarif" value="<c:out value="${forfait.tarif}"/>" min="0" />
+               
+                <input type="number" id="tarif" name="tarif" value="<c:out value="${forfait.tarif}"/>" min="0" />
                 <span class="erreur">${form.erreurs['tarif']}</span>
                 <br />
                 
                 <label for="nom">duree </label>
-                <input type="hidden" id="id" name="id" value="${forfait.forfaitID}">
-                <input type="duree" id="duree" name="duree" value="<c:out value="${forfait.duree}"/>" min="1"/>
+                
+                <input type="number" id="duree" name="duree" value="<c:out value="${forfait.duree}"/>" min="1"/>
                 <span class="erreur">${form.erreurs['duree']}</span>
                 <br />
                 
