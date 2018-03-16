@@ -8,7 +8,7 @@ package forms;
 import Beans.Lecteur;
 import Beans.Utilisateur;
 import Dao.UtilisateurDao;
-import com.howtodoinjava.hashing.password.demo.bcrypt.BCrypt;
+import java.security.MessageDigest;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -132,7 +132,14 @@ public final class InscriptionForm {
             } else if ( motDePasse.length() < 3 ) {
                 throw new Exception( "Les mots de passe doivent contenir au moins 3 caractères." );
             } else {
-                motDePasse=BCrypt.hashpw(motDePasse, BCrypt.gensalt(12));
+                MessageDigest md = MessageDigest.getInstance("SHA-256");
+                md.update("oui".getBytes());
+                byte[] bytes = md.digest(motDePasse.getBytes());
+                StringBuilder sb = new StringBuilder();
+                for(int i=0; i< bytes.length ;i++) {
+                    sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+                }
+                motDePasse = sb.toString();
             }
         } else {
             throw new Exception( "Merci de saisir et confirmer votre mot de passe." );

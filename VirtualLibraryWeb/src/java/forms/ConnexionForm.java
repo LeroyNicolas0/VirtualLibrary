@@ -9,6 +9,7 @@ import Beans.Bibliothecaire;
 import Beans.Lecteur;
 import Beans.Utilisateur;
 import Dao.UtilisateurDao;
+import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -101,6 +102,14 @@ public final class ConnexionForm {
      */
     private Boolean validationMotDePasse( String motDePasse, String motDePasse2) throws Exception {
         if ( motDePasse != null ) {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update("oui".getBytes());
+            byte[] bytes = md.digest(motDePasse.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++) {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            motDePasse = sb.toString();
             return motDePasse2.equals(motDePasse);
         } else {
             throw new Exception( "Merci de saisir votre mot de passe." );
