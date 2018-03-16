@@ -39,7 +39,7 @@ public class Document implements Serializable{
     protected Integer documentID;
 
     public Document(){
-        
+
     }
     public Integer getDocumentID() {
         return documentID;
