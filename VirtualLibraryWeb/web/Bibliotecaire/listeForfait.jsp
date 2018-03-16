@@ -23,7 +23,11 @@
               <th>Duree</th>
               <th>Modifier</th> 
               <th>Supprimer</th>
+              <form action = "/VirtualLibraryWeb/Bibliotecaire/AjoutForfait" method = "post"> 
+                          <input type="submit" name="modifier" value="Ajouter"> </input>
+                      </form>
             </tr>
+            
             <c:forEach var="forfait" items="${list}">
                 <tr>
                   <td><c:out value="${forfait.nom}" /></td>
@@ -36,9 +40,11 @@
                   <td><form action = "" method = "post"> 
                           <input type="hidden" id="id" name="id" value="${forfait.forfaitID}">
                           <input type="submit" name="supprimer" value="Supprimer"> </input>
-                      </form>
-                  </td>
-               </tr>
+                      </form>       
+                          
+                          
+                  </td>            
+               </tr>    
               </c:forEach>
           </table>   
          <span class="erreur">${erreur['e']}</span>
