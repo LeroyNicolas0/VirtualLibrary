@@ -52,6 +52,10 @@
         <servlet-name>ModificationParticipant</servlet-name>
         <servlet-class>Servlets.ModificationParticipant</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>Servlets.Search</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inscription</servlet-name>
         <url-pattern>/Inscription</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>ModificationParticipant</servlet-name>
         <url-pattern>/Bibliotecaire/ModificationParticipant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/Search</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

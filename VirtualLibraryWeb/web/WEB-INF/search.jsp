@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 3 mars 2018, 15:53:01
+    Document   : search
+    Created on : 16 mars 2018, 06:57:18
     Author     : nicolas
 --%>
 
@@ -21,11 +21,11 @@
             <div class="search">
               <form method="post" action="/Search">
                 <fieldset>
-                <input type="text" name="searchTerm" class="searchTerm" placeholder="What are you looking for?">
-                <!--<select  id="choixsearch" name="choixsearch">
+                <input type="text" name ="searchTerm" class="searchTerm" placeholder="What are you looking for?">
+                <select  id="choixsearch" name="choixsearch">
                     <option value="Titre">Titre</option>
                     <option value="Auteur">Auteur</option>
-                </select> -->       
+                </select>        
                 <button type="submit" class="searchButton">
                      <i class="fa fa-search"></i>
                 </button>
@@ -34,14 +34,7 @@
             </div>
         </div>
         
-        <div class="under-search">
-          <%-- Vérification de la présence d'un objet utilisateur en session --%>
-            <c:if test="${!empty sessionScope.sessionUtilisateur}">
-                <p><a href="<c:url value="/Bibliotecaire/AjoutParticipant"/>">Ajout participant</a></p>
-                <p><a href="<c:url value="/Bibliotecaire/AjoutLivre"/>">Ajout livre</a></p>
-            </c:if>
-        </div>   
-            
         <c:import url="/inc/footer.jsp" />            
     </body>
 </html>
+
