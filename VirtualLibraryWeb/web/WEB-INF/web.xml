@@ -48,6 +48,10 @@
         <servlet-name>ModificationMotCle</servlet-name>
         <servlet-class>Servlets.ModificationMotCle</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModificationParticipant</servlet-name>
+        <servlet-class>Servlets.ModificationParticipant</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inscription</servlet-name>
         <url-pattern>/Inscription</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>ModificationMotCle</servlet-name>
         <url-pattern>/Bibliotecaire/ModificationMotCle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificationParticipant</servlet-name>
+        <url-pattern>/Bibliotecaire/ModificationParticipant</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

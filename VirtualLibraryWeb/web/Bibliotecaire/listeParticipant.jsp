@@ -31,7 +31,10 @@
                   <td><c:out value="${participant.prenom}" /></td>
                   <td><c:out value="${participant.pseudonyme}" /></td>
                   <td><c:out value="${participant.dateNaissance}" /></td>
-                  <td><c:out value="mod" /></td>
+                  <td><form action = "/VirtualLibraryWeb/Bibliotecaire/ModificationParticipant" method = "post"> 
+                          <input type="hidden" id="id" name="id" value="${participant.participantId}">
+                          <input type="submit" name="modifier" value="Modifier"> </input>
+                      </form></td>
                   <td><form action = "" method = "post"> 
                           <input type="hidden" id="id" name="id" value="${participant.participantId}">
                           <input type="submit" name="supprimer" value="Supprimer"> </input>
