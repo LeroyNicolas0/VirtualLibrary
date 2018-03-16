@@ -110,7 +110,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ModificationForfait</servlet-name>
-        <url-pattern>/ModificationForfait</url-pattern>
+        <url-pattern>/Bibliotecaire/ModificationForfait</url-pattern>
    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ModificationParticipant</servlet-name>

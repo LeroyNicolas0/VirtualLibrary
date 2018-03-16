@@ -25,8 +25,8 @@ public class Search extends HttpServlet {
     public static final String VUE_FORM   = "/WEB-INF/search.jsp";
     public static final String VUE_SUCCES = "/WEB-INF/afficheResultSearch.jsp";
     
-    @EJB
-    private LivreDao     livreDao;
+    //@EJB
+    //private LivreDao     livreDao;
     
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
         /* Affichage de la page d'inscription */
@@ -34,10 +34,10 @@ public class Search extends HttpServlet {
     }
     
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
-        if(request.getAttribute(ATT_SERC) == null)
+       /* if(request.getAttribute(ATT_SERC) == null)
         List<Document> docList = livreDao.getAll();
         request.setAttribute(ATT_LIST, docList);
-        
+        */
         this.getServletContext().getRequestDispatcher( VUE_SUCCES  ).forward( request, response );
     }
     
