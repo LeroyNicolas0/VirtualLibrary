@@ -139,15 +139,28 @@
                 
                 <label for="typelivre">Type Livre</label>
                 <select data-placeholder="Choose a book type..." id="typelivre" name="typelivre">
-                    <option value="Internet Explorer">Internet Explorer</option>
-                    <option value="Firefox">Firefox</option>
-                    <option value="Chrome">Chrome</option>
-                    <option value="Opera">Opera</option>
-                    <option value="Safari">Safari</option>
+                    <option value="roman">roman</option>
                 </select>
                 <span class="erreur">${form.erreurs['typelivre']}</span>
                 <br />
 
+                <label for="auteurs">Auteur(s)</label>
+                <select data-placeholder="Choose an autor..." id="auteurs" name="auteurs[]" multiple>
+                    <c:forEach var="auteur" items="${listAuteur}">
+                        <option name="${auteur.participantId}" value="${auteur.participantId}">${auteur.prenom} ${auteur.nom}</option>
+                    </c:forEach>                 
+                </select>
+                <span class="erreur">${form.erreurs['auteur']}</span>
+                <br />
+                
+                <label for="motcles">Mot(s)-Cle(s)</label>
+                <select data-placeholder="Choose a keyword..." id="motscles" name="motscles[]" multiple>
+                    <c:forEach var="motcle" items="${listMotCle}">
+                        <option value="${motcle.motCleID}">${motcle.nom}</option>
+                    </c:forEach>                 
+                </select>
+                <span class="erreur">${form.erreurs['motcle']}</span>
+                <br />
                 
                 <input type="submit" value="Ajouter Livre" class="sansLabel" />
                 <br />
@@ -162,6 +175,12 @@
                 });
                 new SlimSelect({
                     select: '#typelivre'
+                });
+                new SlimSelect({
+                    select: '#motscles'
+                });
+                new SlimSelect({
+                    select: '#auteurs'
                 });
         </script>
 

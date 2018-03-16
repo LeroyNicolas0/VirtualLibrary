@@ -5,13 +5,17 @@
  */
 package forms;
 
-import Beans.Livre;
+import Beans.Document;
+import Dao.LivreDao;
+import Dao.MotCleDao;
+import Dao.ParticipantDao;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import org.apache.commons.validator.routines.UrlValidator;
 
 /**
@@ -30,10 +34,20 @@ public class AjoutLivreForm {
    private static final String LANGUE    = "langue";
    private static final String TYPELIVRE    = "typelivre";
    private static final String AUTEURS    = "auteurs";
-   
+    private static final String MOTSCLES    = "motscles";
+
     private String              resultat;
     private Map<String, String> erreurs      = new HashMap<String, String>();
-
+    private LivreDao livreDao;
+    private ParticipantDao participantDao;
+    private MotCleDao motCleDao;
+    
+    public AjoutLivreForm( LivreDao livreDao , ParticipantDao participantDao, MotCleDao motCleDao) {
+        this.livreDao = livreDao;
+        this.participantDao = participantDao;
+        this.motCleDao = motCleDao;
+    }
+    
     public String getResultat() {
         return resultat;
     }
@@ -42,7 +56,7 @@ public class AjoutLivreForm {
         return erreurs;
     }
     
-    public Livre AjoutLivre( HttpServletRequest request ) {
+    public Document AjoutLivre( HttpServletRequest request ) {
         String titre = getValeurChamp( request, TITRE );
         String dateparution = getValeurChamp( request, DATEPARUTION );
         String description = getValeurChamp( request, DESCRIPTION );
@@ -52,10 +66,19 @@ public class AjoutLivreForm {
         String nbpages = getValeurChamp( request, NBPAGES );
         String langue = getValeurChamp( request, LANGUE );
         String typelivre = getValeurChamp( request, TYPELIVRE );
-        String auteurs = getValeurChamp( request, AUTEURS );
+        String[] auteurs = request.getParameterValues(AUTEURS);
+        String[] motscles = request.getParameterValues(MOTSCLES);
         
-        Livre livre = new Livre();
-    
+        Document livre = new Document();
+        
+//        for (int i=0;i<auteurs.length; i++) {
+//            livre.addParticipantCollection(participantDao.trouverParId(Integer.parseInt(auteurs[i])));         
+//        }
+//        
+//        for (String motcle : motscles) {
+//            livre.addMotCleCollection(motCleDao.trouverParId(Integer.parseInt(motcle)));         
+//        }
+        
         try {
             validationTitre( titre );
         } catch ( Exception e ) {
@@ -104,18 +127,11 @@ public class AjoutLivreForm {
             setErreur( LANGUE, e.getMessage() );
         }
         livre.setLangue(langue );
-        
-        try {
-            validationTypeLivre( typelivre );
-        } catch ( Exception e ) {
-            setErreur( TYPELIVRE, e.getMessage() );
-        }
-        livre.setTypeLivre(typelivre );
-        
-        //TODO s'occuper des auters/mot clés
 
         if ( erreurs.isEmpty() ) {
-            resultat = "Succès de l'inscription.";
+            //livreDao.creer(livre);
+            
+            resultat = "Succès de l'inscription." + auteurs.toString();
         } else {
             resultat = "Échec de l'inscription.";
         }
@@ -177,7 +193,7 @@ public class AjoutLivreForm {
     
     private void validationTypeLivre( String typelivre ) throws Exception {
         ArrayList<String> typeList = new ArrayList<String>();
-        typeList.add("Internet Explorer");
+        typeList.add("roman");
         typeList.add("manga");
         typeList.add("documentaire");
         if ( typelivre==null || (typelivre != null && typelivre.length() < 1 ) || !typeList.contains(typelivre)) {

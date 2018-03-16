@@ -12,14 +12,15 @@ package Beans;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -31,42 +32,46 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Francis
  */
 @Entity
-@Table(name = "pays_interdit")
+@Table(name = "type_document")
 @XmlRootElement
-public class PaysInterdit implements Serializable {
+@NamedQueries({
+    @NamedQuery(name = "TypeDocument.findAll", query = "SELECT t FROM TypeDocument t")
+    , @NamedQuery(name = "TypeDocument.findByTypeDocumentId", query = "SELECT t FROM TypeDocument t WHERE t.typeDocumentId = :typeDocumentId")
+    , @NamedQuery(name = "TypeDocument.findByNom", query = "SELECT t FROM TypeDocument t WHERE t.nom = :nom")})
+public class TypeDocument implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "pays_id")
-    private Integer paysId;
+    @Column(name = "type_document_id")
+    private Integer typeDocumentId;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
     @Column(name = "nom")
     private String nom;
-    @ManyToMany(mappedBy = "paysInterditCollection")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "typeDocumentIdFk")
     private Collection<Document> documentCollection;
 
-    public PaysInterdit() {
+    public TypeDocument() {
     }
 
-    public PaysInterdit(Integer paysId) {
-        this.paysId = paysId;
+    public TypeDocument(Integer typeDocumentId) {
+        this.typeDocumentId = typeDocumentId;
     }
 
-    public PaysInterdit(Integer paysId, String nom) {
-        this.paysId = paysId;
+    public TypeDocument(Integer typeDocumentId, String nom) {
+        this.typeDocumentId = typeDocumentId;
         this.nom = nom;
     }
 
-    public Integer getPaysId() {
-        return paysId;
+    public Integer getTypeDocumentId() {
+        return typeDocumentId;
     }
 
-    public void setPaysId(Integer paysId) {
-        this.paysId = paysId;
+    public void setTypeDocumentId(Integer typeDocumentId) {
+        this.typeDocumentId = typeDocumentId;
     }
 
     public String getNom() {
@@ -89,18 +94,18 @@ public class PaysInterdit implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (paysId != null ? paysId.hashCode() : 0);
+        hash += (typeDocumentId != null ? typeDocumentId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PaysInterdit)) {
+        if (!(object instanceof TypeDocument)) {
             return false;
         }
-        PaysInterdit other = (PaysInterdit) object;
-        if ((this.paysId == null && other.paysId != null) || (this.paysId != null && !this.paysId.equals(other.paysId))) {
+        TypeDocument other = (TypeDocument) object;
+        if ((this.typeDocumentId == null && other.typeDocumentId != null) || (this.typeDocumentId != null && !this.typeDocumentId.equals(other.typeDocumentId))) {
             return false;
         }
         return true;
@@ -108,7 +113,7 @@ public class PaysInterdit implements Serializable {
 
     @Override
     public String toString() {
-        return "jpa.entities.PaysInterdit[ paysId=" + paysId + " ]";
+        return "jpa.entities.TypeDocument[ typeDocumentId=" + typeDocumentId + " ]";
     }
     
 }
